@@ -5,13 +5,9 @@ LABEL maintainer="eurekalabdawara@gmail.com"
 #install prestissimo untuk instalasi composer yang lebih cepat
 RUN composer global require hirak/prestissimo
 
-#buat folder untuk menghost aplikasi
-RUN mkdir home/app/app
-WORKDIR home/app/app
-
 #instal dependensi
 COPY composer.json composer.json
-RUN composer install --prefer-dist --no-scripts --no-dev --no-autoloader && rm -rf /home/app/.composer
+RUN composer install --prefer-dist --no-scripts --no-dev --no-autoloader
 
 #copy codebase
 COPY --chown=app:root . ./
